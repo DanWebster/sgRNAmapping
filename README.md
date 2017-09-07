@@ -1,3 +1,6 @@
+We first generated a multi-fasta file of the hg19 genome using Bedtools getFasta. These regions and their reverse complements were parsed for spCas9 PAM sites (NGG) and then filtered based on two main criteria: no TTTTT allowed (this is a polI terminator), and no off-target effects for the identified 23-mer gRNA. Off-target determination was established withBowtie2 using the parameters first described in Kearns et al.:
+bowtie2 -f -x HG19_GENOME --local -f -k 10 --very-sensitive-local -L 9 -N 1 -U GRNA_23MERS -S GRNA_HITS.sam
+
 # sgRNAmapping
 This script will take in a tab-delimited text file of sgRNA data in a defined format
 and returns the genomic location (assuming no double-hits in the genome and bowtie2 
